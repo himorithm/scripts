@@ -1,4 +1,4 @@
-# scripts
+# Misc Backup and Productivity Scripts
 General Purpose bash scripts. Quite useful to automate backups.
 
 ## Script Details
