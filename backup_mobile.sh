@@ -10,11 +10,14 @@ LOG_FILE="/home/himanshu/work/logs/backup.log"
 echo "Mobile Backup started at " `date` |  tee -a $LOG_FILE
 
 echo  "Sync Mobile to Local started" |  tee -a $LOG_FILE
-rsync -rtuv -e 'ssh -p 8022' --exclude ".git/" $MOBILE:$REMOTE_PATH/notes/VerbTeX/Local/ /home/himanshu/work/Documents/notes/latex/
+rsync -rtuv --exclude "*.out" --exclude "*.log" --exclude "*.gz" --exclude "*.aux" --exclude "*.toc" -e 'ssh -p 8022' --exclude ".git/" $MOBILE:$REMOTE_PATH/notes/ /home/himanshu/work/Documents/notes/latex/
 echo  "Sync Mobile to Local Completed" |  tee -a $LOG_FILE
+
 echo  "Sync Local to Mobile started" |  tee -a $LOG_FILE
-rsync -rtuv -e 'ssh -p 8022' --exclude ".git/" /home/himanshu/work/Documents/notes/latex/ $MOBILE:$REMOTE_PATH/notes/VerbTeX/Local/ 
+rsync -rtuv --exclude "*.out" --exclude "*.log" --exclude "*.gz" --exclude "*.aux" --exclude "*.toc" -e 'ssh -p 8022' --exclude ".git/" /home/himanshu/work/Documents/notes/latex/ $MOBILE:$REMOTE_PATH/notes/
 echo  "Sync Local to Mobile Completed" |  tee -a $LOG_FILE
+
+exit
 
 echo "Music Backup started" |  tee -a $LOG_FILE
 rsync -razzP -e 'ssh -p 8022' --exclude ".thumbnails/*" $MOBILE:$REMOTE_PATH/music/ $HOME_PATH/Music/
@@ -28,6 +31,10 @@ echo "Downloads Backup started" |  tee -a $LOG_FILE
 rsync -razzP -e 'ssh -p 8022' --exclude ".thumbnails/*" $MOBILE:$REMOTE_PATH/downloads/ $HOME_PATH/Pictures/mobile_downloads
 echo "Downloads Backup completed" |  tee -a $LOG_FILE
 
+
+echo "Downloads CamScanner  started" |  tee -a $LOG_FILE
+rsync -razzP -e 'ssh -p 8022' --exclude ".thumbnails/*" $MOBILE:$REMOTE_PATH/CamScanner/ /home/himanshu/work/Documents/CamScanner 
+echo "Downloads CamScanner completed" |  tee -a $LOG_FILE
 
 echo "BackingUp Mobile Files Completed at " `date` | tee -a $LOG_FILE
 

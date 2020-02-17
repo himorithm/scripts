@@ -5,6 +5,7 @@
 echo "Backup started at " `date`
 
 DEVICE_NAME="My Passport"
+#DEVICE_NAME="Transcend"
 LOG_FILE="/home/himanshu/work/logs/backup.log"
 
 if [ ! -d "/run/media/himanshu/$DEVICE_NAME/backup/" ] ; then
@@ -24,7 +25,7 @@ RSYNC='rsync -aAXP'
 echo "Backing Up Media Files" | tee -a $LOG_FILE
 
 
-$RSYNC --exclude "media/SteamLibrary/*"  --exclude "*.THM" --exclude "*.LRV" --exclude ".Trash-1000" --exclude="lost+found" /home/himanshu/media  '/run/media/himanshu/My Passport/backup/' | tee -a $LOG_FILE
+$RSYNC --exclude "media/SteamLibrary/*"  --exclude "*.THM" --exclude "*.LRV" --exclude ".Trash-1000" --exclude="lost+found" /home/himanshu/media  "/run/media/himanshu/$DEVICE_NAME/backup/" | tee -a $LOG_FILE
 
 
 echo "Backing Up Media Files Completed" | tee -a $LOG_FILE
@@ -33,7 +34,7 @@ echo "Backing Up Media Files Completed" | tee -a $LOG_FILE
 echo "Backing Up Work Files" | tee -a $LOG_FILE
 
 
-$RSYNC --exclude "work/timeshift/*"  --exclude "work/log/*" --exclude ".snapshots/" --exclude "*.iso" --exclude ".Trash-1000" --exclude="lost+found" /home/himanshu/work  '/run/media/himanshu/My Passport/backup/' | tee -a $LOG_FILE
+$RSYNC --exclude "work/timeshift/*"  --exclude "work/log/*" --exclude ".snapshots/" --exclude "*.iso" --exclude ".Trash-1000" --exclude="lost+found" /home/himanshu/work  "/run/media/himanshu/$DEVICE_NAME/backup/" | tee -a $LOG_FILE
 
 
 echo "Backing Up Work files Completed" | tee -a $LOG_FILE
@@ -45,17 +46,17 @@ echo "Backing Up Work files Completed" | tee -a $LOG_FILE
 echo "Backing Up personal Files" | tee -a $LOG_FILE
 
 
-$RSYNC /home/himanshu/.config/  '/run/media/himanshu/My Passport/backup/himanshu_home/.config/' | tee -a $LOG_FILE
+$RSYNC /home/himanshu/.config/  "/run/media/himanshu/$DEVICE_NAME/backup/himanshu_home/.config/" | tee -a $LOG_FILE
 
-$RSYNC /home/himanshu/.Xresources  '/run/media/himanshu/My Passport/backup/himanshu_home/.Xresources' | tee -a $LOG_FILE
+$RSYNC /home/himanshu/.Xresources  "/run/media/himanshu/$DEVICE_NAME/backup/himanshu_home/.Xresources" | tee -a $LOG_FILE
 
-$RSYNC /home/himanshu/.xinitrc  '/run/media/himanshu/My Passport/backup/himanshu_home/.xinitrc' | tee -a $LOG_FILE
+$RSYNC /home/himanshu/.xinitrc  "/run/media/himanshu/$DEVICE_NAME/backup/himanshu_home/.xinitrc" | tee -a $LOG_FILE
 
-$RSYNC /home/himanshu/.bashrc  '/run/media/himanshu/My Passport/backup/himanshu_home/.bashrc' | tee -a $LOG_FILE
+$RSYNC /home/himanshu/.bashrc  "/run/media/himanshu/$DEVICE_NAME/backup/himanshu_home/.bashrc" | tee -a $LOG_FILE
 
-$RSYNC /home/himanshu/.gitconfig '/run/media/himanshu/My Passport/backup/himanshu_home/.gitconfig' | tee -a $LOG_FILE
+$RSYNC /home/himanshu/.gitconfig "/run/media/himanshu/$DEVICE_NAME/backup/himanshu_home/.gitconfig" | tee -a $LOG_FILE
 
-$RSYNC /home/himanshu/.viminfo '/run/media/himanshu/My Passport/backup/himanshu_home/.viminfo' | tee -a $LOG_FILE
+$RSYNC /home/himanshu/.viminfo "/run/media/himanshu/$DEVICE_NAME/backup/himanshu_home/.viminfo" | tee -a $LOG_FILE
 
 
 echo "Backing Up personal Files Completed" | tee -a $LOG_FILE
