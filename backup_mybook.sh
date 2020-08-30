@@ -23,6 +23,6 @@ fi
 
 #Backup Media
 echo "Backing Up All Personal Files" | tee -a $LOG_FILE
-$RSYNC  --exclude ".Trash-1000" --exclude="lost+found" --exclude=".cache" --exclude=".m2" --exclude=".mozilla" --exclude=".IdeaIC2019.3" --exclude ".sbt"  $SRC $DEST &> $LOG_FILE
+$RSYNC  --exclude "media/SteamLibrary/*" --exclude ".git" --exclude "anaconda3" --exclude ".thunderbird" --exclude ".wine" --exclude ".sdkman" --exclude ".kodi" --exclude ".local" --exclude "caches" --exclude ".gradle" --exclude "work/timeshift/*" --exclude ".atom" --exclude "work/log/*" --exclude ".snapshots/" --exclude "*.iso" --exclude ".Trash-1000" --exclude="lost+found" --exclude=".cache" --exclude=".m2" --exclude=".mozilla" --exclude=".IdeaIC2019.3" --exclude ".sbt"  $SRC $DEST &> $LOG_FILE
 echo "Backing Up All Personal Files Completed" | tee -a $LOG_FILE
 echo "Backup completed at " `date` | tee -a $LOG_FILE
